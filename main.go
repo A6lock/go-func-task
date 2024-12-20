@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 Задача: необходимо написать функцию, которая будет принимать на вход строку (сообщение)
 и маскировать там все ссылки, заменяя их на звездочки.
@@ -24,6 +26,34 @@ Output: Hello, its my page: http://**************** See you
 
 const testString string = "Hello, its my page: http://localhost123.com and another page http://localhost123234.com See you"
 
+func maskingLinks(str string) string {
+	isLink := false
+
+	strByteSlice := make([]byte, 0, len(str))
+
+	for index, char := range str {
+		if string(char) == " " {
+			isLink = false
+		}
+
+		if isLink {
+			strByteSlice = append(strByteSlice, byte('*'))
+
+			continue
+		}
+
+		if string(char) == "/" && string(str[index-1]) == "/" {
+			isLink = true
+		}
+
+		strByteSlice = append(strByteSlice, byte(char))
+	}
+
+	return string(strByteSlice)
+}
+
 func main() {
-	// init project
+	res := maskingLinks(testString)
+
+	fmt.Println(res)
 }
