@@ -21,7 +21,7 @@ import "fmt"
 input: Hello, its my page: http://localhost123.com See you
 Output: Hello, its my page: http://**************** See you
 
-Решение залить на гитхаб, создать отдельную ветку и прислать пулл реквест.
+Решение залить на гитхаб, создать отдельную ветку и прислать пулл реквест
 */
 
 const testString string = "Hello, its my page: http://localhost123.com and another page http://localhost123234.com See you"
