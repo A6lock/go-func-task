@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 /*
 Задача: необходимо написать функцию, которая будет принимать на вход строку (сообщение)
@@ -24,7 +28,13 @@ Output: Hello, its my page: http://**************** See you
 Решение залить на гитхаб, создать отдельную ветку и прислать пулл реквест.
 */
 
-const testString string = "Hello, its my page: http://localhost123.com and another page http://localhost123234.com See you"
+//const testString string = "Hello, its my page: http://localhost123.com and another page http://localhost123234.com See you //case"
+
+func isProtocol(text string) bool {
+	fmt.Println("condition is protocol", text)
+
+	return text == "http://"
+}
 
 func maskingLinks(str string) string {
 	isLink := false
@@ -42,18 +52,23 @@ func maskingLinks(str string) string {
 			continue
 		}
 
-		if string(char) == "/" && string(str[index-1]) == "/" {
-			isLink = true
-		}
-
 		strByteSlice = append(strByteSlice, byte(char))
+
+		if string(char) == "/" && strByteSlice[index-1] == '/' {
+			isLink = isProtocol(string(strByteSlice[index-6 : index+1]))
+		}
 	}
 
 	return string(strByteSlice)
 }
 
 func main() {
-	res := maskingLinks(testString)
+	inputString := bufio.NewScanner(os.Stdin)
+
+	fmt.Println("Введите строку")
+	inputString.Scan()
+
+	res := maskingLinks(inputString.Text())
 
 	fmt.Println(res)
 }
