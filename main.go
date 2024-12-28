@@ -6,6 +6,9 @@ import (
 	"os"
 )
 
+const prefix = "http://"
+const prefixLength = len(prefix)
+
 /*
 Задача: необходимо написать функцию, которая будет принимать на вход строку (сообщение)
 и маскировать там все ссылки, заменяя их на звездочки.
@@ -30,32 +33,26 @@ Output: Hello, its my page: http://**************** See you
 
 //const testString string = "Hello, its my page: http://localhost123.com and another page http://localhost123234.com See you //case"
 
-func isProtocol(text string) bool {
-	fmt.Println("condition is protocol", text)
-
-	return text == "http://"
-}
-
-func maskingLinks(str string) string {
+func maskingLinks(inputStr string) string {
 	isLink := false
 
-	strByteSlice := make([]byte, 0, len(str))
+	strByteSlice := []byte(inputStr)
 
-	for index, char := range str {
-		if string(char) == " " {
+	for i := 0; i < len(strByteSlice)-prefixLength; i++ {
+		if string(strByteSlice[i]) == " " {
 			isLink = false
 		}
 
 		if isLink {
-			strByteSlice = append(strByteSlice, byte('*'))
+			strByteSlice[i] = '*'
 
 			continue
 		}
 
-		strByteSlice = append(strByteSlice, byte(char))
+		if string(inputStr[i:i+prefixLength]) == prefix {
+			isLink = true
 
-		if string(char) == "/" && strByteSlice[index-1] == '/' {
-			isLink = isProtocol(string(strByteSlice[index-6 : index+1]))
+			i += prefixLength - 1
 		}
 	}
 
