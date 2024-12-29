@@ -38,7 +38,7 @@ func maskingLinks(inputStr string) string {
 
 	strByteSlice := []byte(inputStr)
 
-	for i := 0; i < len(strByteSlice)-prefixLength; i++ {
+	for i := 0; i < len(strByteSlice); i++ {
 		if string(strByteSlice[i]) == " " {
 			isLink = false
 		}
@@ -49,7 +49,7 @@ func maskingLinks(inputStr string) string {
 			continue
 		}
 
-		if string(inputStr[i:i+prefixLength]) == prefix {
+		if i < len(strByteSlice)-prefixLength && string(inputStr[i:i+prefixLength]) == prefix {
 			isLink = true
 
 			i += prefixLength - 1
