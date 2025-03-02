@@ -10,8 +10,8 @@ type Producer struct {
 	inputFilePath string
 }
 
-func NewProducer(inputFilePath string) Producer {
-	return Producer{inputFilePath}
+func NewProducer(inputFilePath string) *Producer {
+	return &Producer{inputFilePath}
 }
 
 func (p Producer) Produce() ([]string, error) {

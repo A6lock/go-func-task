@@ -12,8 +12,8 @@ type Presenter struct {
 	outputFilePath string
 }
 
-func NewPresenter(outputFilePath string) Presenter {
-	return Presenter{
+func NewPresenter(outputFilePath string) *Presenter {
+	return &Presenter{
 		outputFilePath,
 	}
 }
