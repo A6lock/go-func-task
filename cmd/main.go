@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"go-func-task/presenter"
-	"go-func-task/produser"
 	"go-func-task/service"
+	"go-func-task/service/presenter"
+	"go-func-task/service/produser"
 	"os"
 )
 
@@ -22,9 +22,9 @@ func main() {
 	produce := produser.NewProducer(*inputFilePath)
 	present := presenter.NewPresenter(*outputFile)
 
-	srvce := service.NewService(produce, present)
+	svc := service.NewService(produce, present)
 
-	err := srvce.Run()
+	err := svc.Run()
 	if err != nil {
 		fmt.Println(err)
 

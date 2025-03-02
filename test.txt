@@ -1,2 +1,7 @@
-Какой-то текст вот тут ссылка какая-то вообще http://some-links и тут
-с новой строки дальше идет текст
+Какой-то текст вот тут ссылка какая-то вообще http://some-links1 и тут
+с новой строки дальше идет текст http://some-links2
+http://some-links3
+http://some-links4
+http://some-links5
+http://some-links6
+http://some-links7
